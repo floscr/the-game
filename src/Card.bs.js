@@ -9,9 +9,9 @@ var Random = require("bs-platform/lib/js/random.js");
 var Pervasives = require("bs-platform/lib/js/pervasives.js");
 var Caml_exceptions = require("bs-platform/lib/js/caml_exceptions.js");
 
-var InvalidCard = Caml_exceptions.create("Demo-ReasonmlTheGame.InvalidCard");
+var InvalidCard = Caml_exceptions.create("Card-ReasonmlTheGame.InvalidCard");
 
-var NotEnoughCards = Caml_exceptions.create("Demo-ReasonmlTheGame.NotEnoughCards");
+var NotEnoughCards = Caml_exceptions.create("Card-ReasonmlTheGame.NotEnoughCards");
 
 function string_of_face(f) {
   switch (f) {

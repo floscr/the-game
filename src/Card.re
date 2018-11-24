@@ -1,4 +1,7 @@
-/* Type for face values of cards */
+type card_type =
+  | RegularCard
+  | FireCard;
+
 type face_value =
   | Ace
   | Two
