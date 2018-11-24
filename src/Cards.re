@@ -13,5 +13,7 @@ type stack =
 
 let duplicate = List.fold_left((acc, x) => [x, x, ...acc], []);
 
+let draw = splitAt;
+
 let initDeck = () =>
   rangeInt(1, 1, 99) |> List.map(x => RegularCard(x)) |> duplicate;

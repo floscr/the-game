@@ -2,6 +2,8 @@
 'use strict';
 
 var List = require("bs-platform/lib/js/list.js");
+var $$Array = require("bs-platform/lib/js/array.js");
+var Curry = require("bs-platform/lib/js/curry.js");
 var Random = require("bs-platform/lib/js/random.js");
 var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
 
@@ -18,5 +20,47 @@ function shuffle(xs) {
               }), sorted);
 }
 
+function mapMatching(pred, fn, _xs, _acc) {
+  while(true) {
+    var acc = _acc;
+    var xs = _xs;
+    if (xs) {
+      var a = xs[0];
+      var match = Curry._1(pred, a);
+      var current = match ? Curry._1(fn, a) : a;
+      _acc = List.append(acc, /* :: */[
+            current,
+            /* [] */0
+          ]);
+      _xs = xs[1];
+      continue ;
+    } else {
+      return acc;
+    }
+  };
+}
+
+console.log($$Array.of_list(mapMatching((function (x) {
+                return x === 1;
+              }), (function (x) {
+                return x + 10 | 0;
+              }), /* :: */[
+              3,
+              /* :: */[
+                2,
+                /* :: */[
+                  1,
+                  /* [] */0
+                ]
+              ]
+            ], /* [] */0)));
+
+function tap(fn, x) {
+  Curry._1(fn, x);
+  return x;
+}
+
 exports.shuffle = shuffle;
-/* No side effect */
+exports.mapMatching = mapMatching;
+exports.tap = tap;
+/*  Not a pure module */

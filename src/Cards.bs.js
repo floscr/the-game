@@ -23,6 +23,9 @@ function initDeck() {
                   }), RList$Rationale.rangeInt(1)(1, 99)));
 }
 
+var draw = RList$Rationale.splitAt;
+
 exports.duplicate = duplicate;
+exports.draw = draw;
 exports.initDeck = initDeck;
 /* RList-Rationale Not a pure module */

@@ -1,5 +1,6 @@
 open Players;
 open Cards;
+open Utils;
 
 type game_state = {
   players: list(player),
@@ -16,20 +17,18 @@ let init = (): game_state => {
   stacks: (Upwards([]), Upwards([]), Downwards([]), Downwards([])),
 };
 
-/* let adjustPlayers = (players: list(players), id: int, fn: player => player) => */
-/*   RList.findIndex(x => x.id === id, players) */
-/*   >>= (id => RList.intersperse(id)); */
+let draw = (amount: int, id: int, state: game_state): game_state => {
+  let {players, deck, stacks} = state;
+  let (drawnCards, newDeck) = draw(amount, deck);
+  state;
+  {
+    ...state,
+    deck: newDeck,
+    players:
+      mapMatching(x => x.id === id, gainCards(drawnCards), players, []),
+  };
+};
 
-/* let draw = (state: game_state, amount: int, ~playerId as id: int): game_state => { */
-/*   let {players, deck, stacks} = state; */
-/*   let (drawnCards, newDeck) = draw(amount, deck); */
-/*   let player = List.find(x => x.id === id, players); */
-/*   (); */
-/* }; */
+let tapHand = tap(x => Js.log(List.nth(x.players, 0).hand |> Array.of_list));
 
-/* let main = () => { */
-/*   let deck = ref(initDeck()); */
-/*   (); */
-/* }; */
-
-Js.log(initDeck() |> Utils.shuffle |> Array.of_list);
+init() |> tapHand |> draw(3, 0) |> tapHand |> draw(5, 0) |> tapHand;
