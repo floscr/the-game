@@ -4,7 +4,7 @@
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
-    "watch": "watch 'node ./src/TheGameCard.bs.js' src",
+    "watch": "watch 'node ./src/Game.bs.js' src",
     "clean": "bsb -clean-world"
   },
   "keywords": [
