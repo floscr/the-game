@@ -33,7 +33,12 @@ let drawCards = (amount: int, id: int, state: game_state): game_state => {
   };
 };
 
-let tapHand = tap(x => Js.log(List.nth(x.players, 0).hand |> Array.of_list));
+let tapHand = (id: int) =>
+  tap(x => {
+    Js.log("Player Hand " ++ string_of_int(id));
+    Js.log(List.nth(x.players, id).hand |> Array.of_list);
+    ();
+  });
 
 let main = () => {
   /* Initialize random seed based on date */
