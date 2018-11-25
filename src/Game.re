@@ -1,3 +1,4 @@
+open Rationale;
 open Players;
 open Cards;
 open Utils;
@@ -36,13 +37,16 @@ let drawCards = (amount: int, id: int, state: game_state): game_state => {
 let tapHand = (id: int) =>
   tap(x => {
     Js.log("Player Hand " ++ string_of_int(id));
-    Js.log(List.nth(x.players, id).hand |> Array.of_list);
-    ();
+    Js.log(
+      List.nth(x.players, id).hand
+      |> List.map(UI.showCard)
+      |> RList.join(" | "),
+    );
+    Js.log("");
   });
 
 let main = () => {
-  /* Initialize random seed based on date */
-  Random.init(int_of_float(Js.Date.now()));
+  Random.init(int_of_float(Js.Date.now())); /* Initialize random seed based on date */
   init() |> drawCards(7, 0) |> drawCards(7, 1) |> tapHand(0) |> tapHand(1);
 };
 
