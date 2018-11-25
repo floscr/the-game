@@ -15,10 +15,6 @@ let rec mapMatching = (pred: 'a => bool, fn: 'a => 'b, xs: list('a), acc) =>
     mapMatching(pred, fn, b, List.append(acc, [current]));
   };
 
-Js.log(
-  mapMatching(x => x == 1, x => x + 10, [3, 2, 1], []) |> Array.of_list,
-);
-
 let tap = (fn, x) => {
   fn(x);
   x;
