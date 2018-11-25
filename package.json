@@ -1,5 +1,5 @@
 {
-  "name": "reasonml-the-game",
+  "name": "the-game",
   "version": "0.1.0",
   "scripts": {
     "build": "bsb -make-world",
@@ -14,8 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "bs-platform": "^3.1.4",
-    "nodemon": "^1.18.6",
-    "watch": "^1.0.2"
+    "nodemon": "^1.18.6"
   },
   "dependencies": {
     "rationale": "^0.1.9"
