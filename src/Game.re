@@ -17,15 +17,19 @@ let init = (): game_state => {
   stacks: (Upwards([]), Upwards([]), Downwards([]), Downwards([])),
 };
 
-let draw = (amount: int, id: int, state: game_state): game_state => {
-  let {players, deck, stacks} = state;
-  let (drawnCards, newDeck) = draw(amount, deck);
-  state;
+let drawCards = (amount: int, id: int, state: game_state): game_state => {
+  let {players, deck} = state;
+  let (drawnCards, newDeck) = Cards.draw(amount, deck);
   {
     ...state,
     deck: newDeck,
     players:
-      mapMatching(x => x.id === id, gainCards(drawnCards), players, []),
+      mapMatching(
+        x => x.id === id,
+        Players.gainCards(drawnCards),
+        players,
+        [],
+      ),
   };
 };
 
