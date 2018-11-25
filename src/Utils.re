@@ -20,3 +20,7 @@ let tap = (fn, x) => {
   fn(x);
   x;
 };
+
+let map4Tuple = (f, (a, b, c, d)) => (f(a), f(b), f(c), f(d));
+
+let join4Tuple = (a, b, c, d) => a ++ " " ++ b ++ " " ++ c ++ " " ++ d;

@@ -42,10 +42,19 @@ $prettyHand
 |j};
 };
 
+let showStacks = stacks => {
+  let heads = Utils.map4Tuple(UI.showStack, stacks);
+  {j|Fields: $heads
+|j};
+};
+
 let tapGame =
-  tap(state =>
-    Js.log(List.map(p => showPlayer(p), state.players) |> RList.join("\n"))
-  );
+  tap(state => {
+    Js.log(showStacks(state.stacks));
+    Js.log(
+      List.map(p => showPlayer(p), state.players) |> RList.join("\n"),
+    );
+  });
 
 let main = () => {
   Random.init(int_of_float(Js.Date.now())); /* Initialize random seed based on date */
