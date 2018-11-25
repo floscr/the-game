@@ -34,20 +34,22 @@ let drawCards = (amount: int, id: int, state: game_state): game_state => {
   };
 };
 
-let tapHand = (id: int) =>
-  tap(x => {
-    Js.log("Player Hand " ++ string_of_int(id));
-    Js.log(
-      List.nth(x.players, id).hand
-      |> List.map(UI.showCard)
-      |> RList.join(" | "),
-    );
-    Js.log("");
-  });
+let showPlayer = player => {
+  let {id, name, hand} = player;
+  let prettyHand = List.map(UI.showCard, hand) |> RList.join(" | ");
+  {j|$name (Player $id)
+$prettyHand
+|j};
+};
+
+let tapGame =
+  tap(state =>
+    Js.log(List.map(p => showPlayer(p), state.players) |> RList.join("\n"))
+  );
 
 let main = () => {
   Random.init(int_of_float(Js.Date.now())); /* Initialize random seed based on date */
-  init() |> drawCards(7, 0) |> drawCards(7, 1) |> tapHand(0) |> tapHand(1);
+  init() |> drawCards(7, 0) |> drawCards(7, 1) |> tapGame;
 };
 
 main();
