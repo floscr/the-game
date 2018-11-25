@@ -6,13 +6,14 @@ let shuffle = xs => {
 };
 
 /* Maps the item matching predicate in a list */
-/* TODO: Stop iterating when predicate is found, otherwise can just use filter_ */
 let rec mapMatching = (pred: 'a => bool, fn: 'a => 'b, xs: list('a), acc) =>
   switch (xs) {
   | [] => acc
   | [a, ...b] =>
-    let current = pred(a) ? fn(a) : a;
-    mapMatching(pred, fn, b, List.append(acc, [current]));
+    switch (pred(a)) {
+    | true => List.flatten([acc, [fn(a)], b])
+    | _ => mapMatching(pred, fn, b, List.append(acc, [a]))
+    }
   };
 
 let tap = (fn, x) => {
