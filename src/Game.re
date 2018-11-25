@@ -13,7 +13,7 @@ let init = (): game_state => {
     {id: 0, name: player_names[0], hand: []},
     {id: 1, name: player_names[1], hand: []},
   ],
-  deck: initDeck(),
+  deck: initDeck() |> Utils.shuffle,
   stacks: (Upwards([]), Upwards([]), Downwards([]), Downwards([])),
 };
 
