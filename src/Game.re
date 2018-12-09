@@ -30,6 +30,10 @@ let drawCards = (amount: int, id: int, state: game_state) => {
 };
 
 module Loop = {
-  let start = () =>
-    init() |> drawCards(7, 0) |> drawCards(7, 1) |> Show.tapGame;
+  let loop = game => game |> Show.tapGame;
+
+  let start = () => {
+    let game = init() |> drawCards(7, 0) |> drawCards(7, 1);
+    loop(game);
+  };
 };
