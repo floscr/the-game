@@ -5,6 +5,7 @@
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
     "watch": "nodemon ./src/Main.bs.js -q -x 'clear && node'",
+    "watch:test": "nodemon ./src/Test.bs.js -q -x 'clear && node'",
     "clean": "bsb -clean-world"
   },
   "keywords": [
