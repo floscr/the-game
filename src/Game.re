@@ -10,6 +10,7 @@ let init = () => {
   ],
   deck: Deck.init() |> Utils.shuffle,
   stacks: (Upwards([]), Upwards([]), Downwards([]), Downwards([])),
+  turn: 0,
 };
 
 let drawCards = (amount: int, id: int, state: game_state) => {
