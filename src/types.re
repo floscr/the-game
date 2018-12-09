@@ -16,7 +16,7 @@ type player = {
   hand: cards,
 };
 
-type game_state = {
+type gameState = {
   players: list(player),
   deck: cards,
   stacks: (stack, stack, stack, stack),

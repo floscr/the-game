@@ -13,7 +13,7 @@ let init = () => {
   turn: 0,
 };
 
-let drawCards = (amount: int, id: int, state: game_state) => {
+let drawCards = (amount: int, id: int, state: gameState) => {
   let {players, deck} = state;
   let (drawnCards, newDeck) = Deck.draw(amount, deck);
   {
