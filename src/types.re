@@ -22,3 +22,8 @@ type gameState = {
   stacks: (stack, stack, stack, stack),
   turn: playerId,
 };
+
+type gameAction =
+  | Ok(gameState)
+  | Error(string)
+  | GameEnd(gameState);
